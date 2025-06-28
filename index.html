@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- وصف الموقع بالإنجليزية والعربية -->
+    <meta
+      name="description"
+      content="Word Counter Tool – Instantly count words, characters, and estimate reading time. أداة مجانية لحساب عدد الكلمات والحروف وزمن القراءة للنصوص الطويلة والقصيرة."
+    />
+
+    <!-- اسم المؤلف -->
+    <meta name="author" content="GAMA11544" />
+
+    <title>Word Counter Tool</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f3f6;
+        margin: 0;
+        padding: 30px;
+        text-align: center;
+      }
+
+      h1 {
+        color: #007bff;
+      }
+
+      textarea {
+        width: 90%;
+        max-width: 800px;
+        height: 250px;
+        padding: 15px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        margin-top: 20px;
+        resize: vertical;
+      }
+
+      .stats {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #333;
+      }
+
+      .stats span {
+        display: inline-block;
+        margin: 10px 20px;
+      }
+
+      footer {
+        margin-top: 40px;
+        color: #777;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Word Counter Tool</h1>
+
+    <textarea
+      id="inputText"
+      placeholder="Type or paste your text here..."
+    ></textarea>
+
+    <div class="stats">
+      <span>Words: <strong id="wordCount">0</strong></span>
+      <span>Characters: <strong id="charCount">0</strong></span>
+      <span>Reading Time: <strong id="readingTime">0 sec</strong></span>
+    </div>
+
+    <footer>&copy; 2025 SimpleTools.online | Created by GAMA11544</footer>
+
+    <script>
+      const input = document.getElementById("inputText");
+      const wordCount = document.getElementById("wordCount");
+      const charCount = document.getElementById("charCount");
+      const readingTime = document.getElementById("readingTime");
+
+      input.addEventListener("input", () => {
+        const text = input.value.trim();
+
+        // عدد الحروف (يشمل المسافات)
+        const numChars = text.length;
+
+        // عدد الكلمات (دقيق حتى بالعربي)
+        const wordsArray = text.split(/\s+/).filter((word) => word.length > 0);
+        const numWords = wordsArray.length;
+
+        // وقت القراءة (تقريبًا 200 كلمة في الدقيقة)
+        const timeInMin = numWords / 200;
+        const timeDisplay =
+          timeInMin < 1
+            ? Math.ceil(timeInMin * 60) + " sec"
+            : Math.round(timeInMin) + " min";
+
+        wordCount.textContent = numWords;
+        charCount.textContent = numChars;
+        readingTime.textContent = timeDisplay;
+      });
+    </script>
+  </body>
+</html>
