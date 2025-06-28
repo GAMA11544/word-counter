@@ -82,7 +82,7 @@
 
     <div class="stats">
       <span>Words: <strong id="wordCount">0</strong></span>
-      <span>Characters: <strong id="charCount">0</strong></span>
+      <span>Letters: <strong id="charCount">0</strong></span>
       <span>Reading Time: <strong id="readingTime">0 sec</strong></span>
     </div>
 
@@ -95,10 +95,10 @@
       const readingTime = document.getElementById("readingTime");
 
       input.addEventListener("input", () => {
-        const text = input.value.trim();
+        const text = input.value;
 
         // عدد الحروف (يشمل المسافات)
-        const numChars = text.length;
+        const numChars = text.replace(/\s/g, "").length;
 
         // عدد الكلمات (دقيق حتى بالعربي)
         const wordsArray = text.split(/\s+/).filter((word) => word.length > 0);
